@@ -1,0 +1,57 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long int lli;
+#define md 1000000007
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    lli n,i,j,x;
+    cin>>n;
+    lli a[n];
+    for(i=0;i<n;i++)
+    {
+        cin>>a[i];
+    }
+    vector<char> g;
+    i=0;j=n-1;
+    x=0;
+    while(i<=j)
+    {
+    if(a[i]-x>0&&a[j]-x>0)
+    {
+        if(a[i]-x<a[j]-x)
+        {
+            g.push_back('L');
+            x=a[i];
+            ++i;
+            continue;
+        }
+        else
+        {
+            g.push_back('R');
+            x=a[j];
+            j--;
+            continue;
+        }}
+        else if(a[i]-x>0)
+        {
+            g.push_back('L');
+            x=a[i];
+            ++i;
+            continue;
+        }
+        else if(x-a[j]<0)
+        {
+            g.push_back('R');
+            x=a[j];
+            j--;
+        }
+        else
+        break;
+    }
+    cout<<g.size()<<"\n";
+    for(i=0;i<g.size();i++)
+    cout<<g[i];
+    return 0;
+}
