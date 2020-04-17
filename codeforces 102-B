@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long int lli;
+#define md 1000000007
+lli sods(string s,lli l)
+{ lli r=0;
+    for(lli i=0;i<l;i++)
+    r=r+(s[i]-'0');
+    return r;
+}
+lli sod(lli n)
+{
+    lli r=0;
+    while(n>0)
+    {
+        r=r+n%10;
+        n=n/10;
+    }
+    return r;
+}
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    string n;
+    lli x,z=0,l;
+    cin>>n;
+    l=n.length();
+    if(l>1)
+    {x=sods(n,l);
+    z=1;
+    while(x>9)
+    {    
+        x=sod(x);
+        ++z;
+    }
+    cout<<z;}
+    else
+    cout<<0;
+    return 0;
+}
