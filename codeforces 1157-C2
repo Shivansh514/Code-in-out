@@ -1,0 +1,88 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long int lli;
+#define md 1000000007
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    lli n,i,j,x;
+    cin>>n;
+    lli a[n];
+    for(i=0;i<n;i++)
+    {
+        cin>>a[i];
+    }
+    vector<char> g;
+    i=0;j=n-1;
+    x=0;
+    while(i<=j)
+    {
+    if(a[i]-x>0&&a[j]-x>0&&a[i]!=a[j])
+    {
+        if(a[i]-x<a[j]-x)
+        {
+            g.push_back('L');
+            x=a[i];
+            ++i;
+            continue;
+        }
+        else
+        {
+            g.push_back('R');
+            x=a[j];
+            j--;
+            continue;
+        }}
+        else if(a[i]-x>0&&a[i]!=a[j])
+        {
+            g.push_back('L');
+            x=a[i];
+            ++i;
+            continue;
+        }
+        else if(x-a[j]<0&&a[i]!=a[j])
+        {
+            g.push_back('R');
+            x=a[j];
+            j--;
+        }
+        else if(a[i]==a[j]&&a[i]>x)
+        {
+            lli a1=0,a2=0,a3=x,a4=x;
+            while(i<n&&a[i]>a3)
+            {
+                ++a1;
+                a3=a[i];
+                ++i;
+            }
+            while(j>=0&&a[j]>a4)
+            {
+                ++a2;
+                a4=a[j];
+                j--;
+            }
+            if(a2>a1)
+            {
+                while(a2--)
+                {
+                    g.push_back('R');
+                }
+            }
+            else
+            {
+                while(a1--)
+                {
+                    g.push_back('L');
+                }
+            }
+            break;
+        }
+        else
+        break;
+    }
+    cout<<g.size()<<"\n";
+    for(i=0;i<g.size();i++)
+    cout<<g[i];
+    return 0;
+}
